@@ -13,7 +13,7 @@ export interface AuthResponseError {
 }
 
 export interface User {
-    _id: string;
+    id: string;
     username: string;
 }
 

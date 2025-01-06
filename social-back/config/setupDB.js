@@ -23,7 +23,30 @@ async function setupDatabase() {
                 token TEXT NOT NULL
             );
         `);
-        console.log("Tabla 'tokens' verificada o creada correctamente.");        
+        console.log("Tabla 'tokens' verificada o creada correctamente.");   
+        
+        // Crear o verificar tabla de chats
+
+        await turso.execute(`
+            CREATE TABLE IF NOT EXISTS chats (
+                id UUID PRIMARY KEY NOT NULL,
+                user_id TEXT NOT NULL,
+                username VARCHAR(100) NOT NULL,
+                message TEXT NOT NULL,       
+                sent_at TIMESTAMP NOT NULL
+            );        
+        `);
+        console.log("Tabla 'chats' verificada o creada correctamente."); 
+
+        //Tabla de desplazamiento (chat_offsets)
+        await turso.execute(`
+            CREATE TABLE IF NOT EXISTS chat_offsets (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                message_id UUID NOT NULL,
+                FOREIGN KEY (message_id) REFERENCES chats(id) ON DELETE CASCADE
+            );        
+        `);
+        console.log("Tabla 'chats_offsets' verificada o creada correctamente."); 
 
         // Crear índice para optimizar búsquedas de tokens
         await turso.execute(`

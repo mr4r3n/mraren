@@ -1,12 +1,19 @@
-const { Server } = require("socket.io");
-const { createServer } = require("node:http");
+const { Socket } = require("socket.io");
 
 const router = require("express").Router();
-    router.get("/", (req, res) => {
-        const server = createServer(app)
-        const io = new Server(server)
-        
-        res.send("ChatBox")
-    })
+
+router.get("/", async (req, res) => {
+    const {message, user, username, time} = req.body
+    if (!message) {
+        return res.status(400).json(
+            jsonResponse(400, {
+            error: "Campos obligatorios"
+            })
+        )
+    }
+
+    
+
+});
 
 module.exports = router;

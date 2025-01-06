@@ -5,7 +5,7 @@ import { formatMessageDate } from "../utils/dateUtils";
 
 export default function ChatBox() {
     const auth = useAuth();
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<{ text: string; user: string; time: string }[]>([]);
     const [input, setInput] = useState("");
     const chatboxRef = useRef<HTMLUListElement | null>(null);
     const socketRef = useRef<Socket | null>(null);  // Almacena la instancia de socket
@@ -15,6 +15,7 @@ export default function ChatBox() {
     useEffect(() => {
         if (!socketRef.current) {
             // Crear la conexión solo si no existe
+            
             socketRef.current = io(`${apiUrl}`, {
                 auth: {
                     token: auth.getRefreshToken(),
@@ -26,7 +27,7 @@ export default function ChatBox() {
 
             // Escuchar mensajes entrantes
             socketRef.current.on('chat message', (msg, serverOffset, sentAt, username) => {
-                const newMessage = {
+                const newMessage: { text: string; user: string; time: string } = {
                     text: msg,
                     user: username || "Anonymous",
                     time: formatMessageDate(sentAt),  // Formatear la fecha con la nueva función

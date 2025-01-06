@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AccessTokenResponse, AuthResponse, User } from "../types/types";
-import { API_URL } from "./restAPI";
 
 interface AuthProviderProps {
     children: React.ReactNode;
@@ -23,6 +22,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [accessToken, setAccessToken] = useState<string>("");
     const [user, setUser] = useState<User | undefined>();
     const [loading, setLoading] = useState(true);
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         checkAuth();
@@ -30,7 +30,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     async function requestNewAccessToken(refreshToken: string) {
         try {
-            const response = await fetch(`${API_URL}/refreshToken`, {
+            const response = await fetch(`${apiUrl}/refreshToken`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     async function getUserInfo(accessToken: string) {
         try {
-            const response = await fetch(`${API_URL}/User`, {
+            const response = await fetch(`${apiUrl}/User`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

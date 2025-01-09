@@ -16,7 +16,7 @@ export default function ChatBox() {
         if (!socketRef.current) {
             // Crear la conexión solo si no existe
             
-            socketRef.current = io(`${apiUrl}`, {
+            socketRef.current = io(`${apiUrl}/ChatBox`, {
                 auth: {
                     token: auth.getRefreshToken(),
                     serverOffset: 0,

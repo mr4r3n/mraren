@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useAuth } from "../auth/AuthProvider"
 import { Navigate, useNavigate } from "react-router-dom";
-import { API_URL } from "../auth/restAPI";
 import { AuthResponseError } from "../types/types";
 import Swal from 'sweetalert2'
 
@@ -11,13 +10,14 @@ export default function SignUp() {
     const [password, setPassword] = useState("")
     const goTo = useNavigate()
     const auth = useAuth();
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         try {
             
-            const response = await fetch(`${API_URL}/SignUp`, {
+            const response = await fetch(`${apiUrl}/api/SignUp`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

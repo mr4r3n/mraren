@@ -10,12 +10,13 @@ export default function ChatBox() {
     const [input, setInput] = useState("");
     const chatboxRef = useRef<HTMLUListElement | null>(null);
     const socketRef = useRef<Socket | null>(null);  // Almacena la instancia de socket
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     // Establecer conexión de socket solo una vez
     useEffect(() => {
         if (!socketRef.current) {
             // Crear la conexión solo si no existe
-            socketRef.current = io('http://localhost:3000', {
+            socketRef.current = io(`${apiUrl}`, {
                 auth: {
                     token: auth.getRefreshToken(),
                     serverOffset: 0,

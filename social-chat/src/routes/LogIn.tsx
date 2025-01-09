@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useAuth } from "../auth/AuthProvider"
 import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { API_URL } from "../auth/restAPI";
 import { AuthResponse, AuthResponseError } from "../types/types";
 
 export default function LogIn() {
@@ -9,14 +10,13 @@ export default function LogIn() {
     const [password, setPassword] = useState("")
     const goTo = useNavigate()
     const auth = useAuth();
-    const apiUrl = import.meta.env.VITE_API_URL;
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         try {
             
-            const response = await fetch(`${apiUrl}/LogIn`, {
+            const response = await fetch(`${API_URL}/LogIn`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -28,7 +28,7 @@ setupDatabase().then(() => {
 
 // Middleware y rutas
 app.use(cors({
-    origin: ["api.mraren.moe"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST"]
 }));
 app.use(express.json());
@@ -42,7 +42,7 @@ app.use('/api/User', authenticate, require('./routes/User'));
 
 const io = new Server(server, {
     cors: {
-        origin: ["api.mraren.moe"],
+        origin: ["http://localhost:5173"],
         methods: ["GET", "POST"]
     },
     connectionStateRecovery: {

@@ -1,0 +1,72 @@
+/php-chat-app/
+├── config/
+│   ├── database.php          # MongoDB connection setup
+│   ├── config.php            # Application configuration
+│   └── constants.php         # Application constants
+├── core/
+│   ├── Router.php            # Custom routing system
+│   ├── Session.php           # Session management
+│   ├── Auth.php              # Authentication management
+│   ├── Database.php          # MongoDB connection wrapper
+│   ├── Validator.php         # Input validation
+│   ├── Security.php          # Security utilities (XSS, CSRF protection)
+│   └── WebSocket.php         # WebSocket server implementation
+├── models/
+│   ├── User.php              # User model
+│   ├── Message.php           # Message model
+│   ├── Group.php             # Group chat model
+│   ├── PrivateChat.php       # Private chat model
+│   └── Role.php              # User roles and permissions
+├── controllers/
+│   ├── AuthController.php    # Authentication controller
+│   ├── UserController.php    # User management
+│   ├── ChatController.php    # Chat functionality
+│   ├── GroupController.php   # Group chat management
+│   ├── MediaController.php   # Media handling
+│   └── AdminController.php   # Admin functionality
+├── views/
+│   ├── layouts/
+│   │   ├── main.php          # Main layout template
+│   │   └── auth.php          # Authentication layout
+│   ├── auth/
+│   │   ├── login.php         # Login page
+│   │   ├── register.php      # Registration page
+│   │   └── forgot.php        # Password reset
+│   ├── chat/
+│   │   ├── index.php         # Main chat interface
+│   │   ├── private.php       # Private chat interface
+│   │   └── group.php         # Group chat interface
+│   ├── groups/
+│   │   ├── create.php        # Create group
+│   │   ├── manage.php        # Manage group
+│   │   └── settings.php      # Group settings
+│   ├── user/
+│   │   ├── profile.php       # User profile
+│   │   ├── settings.php      # User settings
+│   │   └── friends.php       # Friends management
+│   └── admin/
+│       ├── dashboard.php     # Admin dashboard
+│       ├── users.php         # User management
+│       └── roles.php         # Role management
+├── public/
+│   ├── index.php             # Main entry point
+│   ├── js/
+│   │   ├── chat.js           # Chat functionality
+│   │   ├── webrtc.js         # WebRTC for screen sharing
+│   │   ├── websocket.js      # WebSocket client
+│   │   └── ui.js             # UI interactions
+│   ├── css/
+│   │   ├── main.css          # Main styles
+│   │   ├── chat.css          # Chat styles
+│   │   └── responsive.css    # Responsive design
+│   └── assets/
+│       ├── images/           # Image assets
+│       └── icons/            # Icon assets
+├── websocket/
+│   ├── server.php            # WebSocket server
+│   └── handlers/             # WebSocket event handlers
+├── utils/
+│   ├── helpers.php           # Helper functions
+│   ├── sanitizer.php         # Input sanitization
+│   └── logger.php            # Logging functionality
+└── .htaccess                 # Apache configuration
